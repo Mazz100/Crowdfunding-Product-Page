@@ -1,0 +1,135 @@
+//Variables
+$body-bg-color: hsl(0, 0%, 87%);
+$primary-cyan-color-default: hsl(176, 50%, 47%);
+$primary-dark-cyan-color-activeStates: hsl(176, 72%, 28%);
+
+
+@use 'reset';
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap');
+
+@mixin Flex($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: end;
+    align-items: center;
+
+}
+
+//background propreties
+@mixin backgroundStyle() {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
+}
+
+body {
+    @include Flex(column);
+
+    background-image: url(../assets/images/image-hero-mobile.jpg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+
+    font-family: Commissioner, Arial, Helvetica, sans-serif;
+
+}
+
+.wrapper {
+    max-width: 21rem;
+}
+
+//Navbar Styling Section
+.navbar-container {
+   
+}
+
+
+//Product Styling Section
+.mastercraft-container {
+    @include Flex(column);
+    @include backgroundStyle();
+    position: relative;
+    padding: 1.5em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.mastercraft-logo {
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+
+}
+
+.product-content {
+    .product-header {
+        margin-top: 1em;
+        margin-bottom: 0.7em;
+    }
+
+    .product-description {
+        margin-bottom: 1.2em;
+        opacity: 0.7;
+    }
+}
+
+.back-project {
+    @include Flex(row);
+    gap: 1em;
+    width: 100%;
+    justify-content: space-between;
+
+    .backproject-button {
+        display: block;
+        width: 100%;
+        padding: 1em;
+        color: white;
+        background-color: $primary-cyan-color-default;
+        border: none;
+        border-radius: 24px;
+    }
+
+    .bookmare-button {
+        border: none;
+        background-color: transparent;
+    }
+}
+
+/* ============== Product Section Finish =================*/
+
+//FundTracker Styling Section
+.fund-container {
+    @include Flex(column);
+    @include backgroundStyle();
+    padding: 1.5em;
+
+    p {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    span {
+        font-size: 0.75rem;
+        opacity: 0.7;
+    }
+
+    .line {
+        display: block;
+        width: 50px;
+        height: 1px;
+        background-color: lightgray;
+        margin: 0.7em;
+    }
+
+}
+/* ============== FundTracker Section Finish =============*/
+
+@media (min-width: 50rem) {
+    body {
+        background-image: url(../assets/images/image-hero-desktop.jpg);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: contain;
+    }
+}
