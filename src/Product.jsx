@@ -4,7 +4,7 @@ function Product() {
     return (
         <div className="mastercraft-container">
             <div className='mastercraft-logo'>
-                <img src={logoMasterCraft} alt="logo of mastercraft" />
+                <img src={logoMasterCraft} alt="mastercraft logo" />
             </div>
 
             <div className='product-content'>
@@ -17,8 +17,8 @@ function Product() {
             </div>
 
             <div className='back-project'>
-                <button className='backproject-button'>Back this project</button>
-                <button className='bookmare-button'>
+                <button className='backproject-button' aria-label='back project button'>Back this project</button>
+                <button className='bookmare-button' aria-label='bookmark button'>
                     <img src={bookmark} alt="" />
                 </button>
             </div>

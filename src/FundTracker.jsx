@@ -4,21 +4,33 @@ function FundTracker() {
     return (
         <>
             <div className="fund-container">
-                <p>$89,914</p>
-                <span>of $100,000 backed</span>
+                <ul>
+                    <li>
+                        <span className="fund-remain">$89,914</span>
+                    </li>
+                    <li>
+                        <span className="fund-total">of $100,000 backed</span>
+                    </li>
 
-                <div className="line"></div>
+                    <div className="line"></div>
 
-                <p>5,007</p>
-                <span>total backers</span>
-                
-                <div className="line"></div>
+                    <li>
+                        <span className="fund-remain">5,007</span>
+                    </li>
+                    <li>
+                        <span className="fund-total">total backers</span>
+                    </li>
 
-                <p>56</p>
-                <span>days left</span>
+                    <div className="line"></div>
+
+                    <li>
+                        <span className="fund-remain">56</span>
+                    </li>
+                    <li>
+                        <span className="fund-total">days left</span>
+                    </li>
+                </ul>
             </div>
-
-            <div className="progressbar-fund"></div>
         </>
     );
 }

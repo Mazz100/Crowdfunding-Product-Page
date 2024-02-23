@@ -93,28 +93,56 @@ textarea:not([rows]) {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
-  background-image: url(../assets/images/image-hero-mobile.jpg);
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: contain;
+  background-color: hsl(236, 20%, 16%);
   font-family: Commissioner, Arial, Helvetica, sans-serif;
 }
 
-.wrapper {
+header {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+header picture {
+  grid-area: 1/1/2/2;
+}
+
+.main {
   max-width: 21rem;
+  position: relative;
+  transform: translateY(-60px);
+}
+
+button {
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  grid-area: 1/1/2/2;
+  padding: 1em;
+  margin-top: 1em;
+}
+nav .navbar-button {
+  border: none;
+  background-color: transparent;
 }
 
 .mastercraft-container {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
+  position: relative;
   background-color: white;
   border-radius: 8px;
   box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
-  position: relative;
   padding: 1.5em;
   margin-bottom: 1em;
   text-align: center;
@@ -139,7 +167,7 @@ body {
 .back-project {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
   gap: 1em;
   width: 100%;
@@ -161,37 +189,50 @@ body {
 
 /* ============== Product Section Finish =================*/
 .fund-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+}
+.fund-container ul {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+}
+.fund-container .fund-remain {
+  font-size: 2rem;
+  font-weight: 800;
+}
+.fund-container .fund-total {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+.fund-container .line {
+  width: 50px;
+  height: 1px;
+  background-color: lightgray;
+  margin: 0.7em;
+  text-align: center;
+}
+
+/* ============== FundTracker Section Finish =============*/
+.cards-continer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: start;
+  gap: 1.5em;
   background-color: white;
   border-radius: 8px;
   box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
   padding: 1.5em;
 }
-.fund-container p {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-.fund-container span {
-  font-size: 0.75rem;
+.cards-continer p {
   opacity: 0.7;
-}
-.fund-container .line {
-  display: block;
-  width: 50px;
-  height: 1px;
-  background-color: lightgray;
-  margin: 0.7em;
-}
-
-/* ============== FundTracker Section Finish =============*/
-@media (min-width: 50rem) {
-  body {
-    background-image: url(../assets/images/image-hero-desktop.jpg);
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: contain;
-  }
 }/*# sourceMappingURL=style.css.map */
