@@ -30,6 +30,8 @@ function FundTracker() {
                         <span className="fund-total">days left</span>
                     </li>
                 </ul>
+
+                
             </div>
         </>
     );

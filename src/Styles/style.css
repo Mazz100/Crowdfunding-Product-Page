@@ -95,7 +95,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: hsl(236, 20%, 16%);
+  background-color: hsl(0, 0%, 98%);
   font-family: Commissioner, Arial, Helvetica, sans-serif;
 }
 
@@ -106,13 +106,23 @@ header {
   grid-template-rows: repeat(1, 1fr);
 }
 header picture {
-  grid-area: 1/1/2/2;
+  grid-area: 1/1/2/3;
+}
+header .desktop-navigation {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main {
-  max-width: 21rem;
+  max-width: 22rem;
   position: relative;
-  transform: translateY(-60px);
+  transform: translateY(-55px);
 }
 
 button {
@@ -221,7 +231,7 @@ nav .navbar-button {
 }
 
 /* ============== FundTracker Section Finish =============*/
-.cards-continer {
+.cards-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,8 +241,77 @@ nav .navbar-button {
   background-color: white;
   border-radius: 8px;
   box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
-  padding: 1.5em;
+  padding: 1em;
 }
-.cards-continer p {
+.cards-container .product-description {
   opacity: 0.7;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
+  align-items: start;
+  gap: 0.8em;
+  padding: 1em;
+  border: 0.06em solid hsl(0, 0%, 85%);
+}
+.cards .pledge-text {
+  color: hsl(176, 50%, 47%);
+  font-weight: 700;
+}
+.cards .description-text {
+  opacity: 0.7;
+}
+.cards .stock-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+.cards .stock-left {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.cards span {
+  opacity: 0.6;
+}
+
+.reward-button {
+  display: block;
+  font-size: 0.875rem;
+  padding: 1em 2em 1em 2em;
+  border-radius: 24px;
+  border: none;
+  background-color: hsl(176, 50%, 47%);
+  color: white;
+}
+
+@media (min-width: 50rem) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  header .desktop-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    display: flex;
+  }
+  header .desktop-navigation .navigations {
+    text-decoration: none;
+    color: white;
+  }
+  .navbar-button {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */

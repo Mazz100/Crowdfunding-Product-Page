@@ -9,18 +9,20 @@ function CrowdfundMain() {
 
     return (
         <>
-            <header>
-                <picture>
-                    <source srcSet={desktopBG} media="(min-width: 50rem)" />
-                    <img src={mobileBG} alt="" />
-                </picture>
-                <Navbar />
-            </header>
-            <main className="main">
-                <Product />
-                <FundTracker />
-                <CardSelection />
-            </main>
+            <div className="wrapper">
+                <header>
+                    <picture>
+                        <source srcSet={desktopBG} media="(min-width: 50rem)" />
+                        <img src={mobileBG} alt="" />
+                    </picture>
+                    <Navbar />
+                </header>
+                <main className="main">
+                    <Product />
+                    <FundTracker />
+                    <CardSelection />
+                </main>
+            </div>
         </>
     );
 }
