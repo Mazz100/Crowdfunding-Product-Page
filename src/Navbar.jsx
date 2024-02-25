@@ -1,30 +1,45 @@
 import crowdfundLogo from './assets/images/logo.svg'
 import hamburgerIcon from './assets/images/icon-hamburger.svg'
 import closeIcon from './assets/images/icon-close-menu.svg'
-import React, {useState} from 'react';
+import MobileMenu from './MobileMenu';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 function Navbar() {
-
+    const [openMenu, setOpenMenu] = useState(false);
 
     return (
-        <nav>
-            <a href="#" aria-label='Home'>
-                <img src={crowdfundLogo} alt="Crowdfund" />
-            </a>
+        <>
+            <nav>
+                <a href="#" aria-label='Home'>
+                    <img src={crowdfundLogo} alt="Crowdfund" />
+                </a>
 
-            <div className='desktop-navigation'>
-                <a href="#" className='navigations' aria-label='about'>About</a>
+                <div className='desktop-navigation'>
+                    <a href="#" className='navigations' aria-label='about'>About</a>
 
-                <a href="#" className='navigations' aria-label='discover'>Discover</a>
+                    <a href="#" className='navigations' aria-label='discover'>Discover</a>
 
-                <a href="#" className='navigations' aria-label='get started'>Get Started</a>
-            </div>
+                    <a href="#" className='navigations' aria-label='get started'>Get Started</a>
+                </div>
 
-            <button className='navbar-button' aria-label='navbar menu button' aria-expanded="false">
-                <img src={hamburgerIcon} alt="" />
-            </button>
+                <button onClick={() => !openMenu ? setOpenMenu(true) : setOpenMenu(false)}
+                    className='navbar-button'
+                    aria-label='navbar menu button'
+                    aria-expanded={openMenu ? "true" : 'false'}>
+                    <img src={!openMenu ? hamburgerIcon : closeIcon} alt="" />
+                </button>
 
-        </nav>
+                {openMenu && createPortal(
+                    <MobileMenu />,
+
+                    document.body
+
+                )}
+
+            </nav>
+
+        </>
     );
 
 }

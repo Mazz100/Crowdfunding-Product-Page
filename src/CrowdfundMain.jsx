@@ -12,7 +12,7 @@ function CrowdfundMain() {
             <div className="wrapper">
                 <header>
                     <picture>
-                        <source srcSet={desktopBG} media="(min-width: 50rem)" />
+                        <source srcSet={desktopBG} media="(min-width: 43.75rem)" />
                         <img src={mobileBG} alt="" />
                     </picture>
                     <Navbar />

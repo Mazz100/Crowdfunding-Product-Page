@@ -99,19 +99,6 @@ body {
   font-family: Commissioner, Arial, Helvetica, sans-serif;
 }
 
-header {
-  display: grid;
-  align-items: start;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-}
-header picture {
-  grid-area: 1/1/2/3;
-}
-header .desktop-navigation {
-  display: none;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -119,10 +106,24 @@ header .desktop-navigation {
   align-items: center;
 }
 
+header {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  width: 100%;
+}
+header picture {
+  grid-area: 1/1/2/3;
+}
+
 .main {
   max-width: 22rem;
   position: relative;
   transform: translateY(-55px);
+}
+
+.desktop-navigation {
+  display: none;
 }
 
 button {
@@ -135,13 +136,45 @@ nav {
   justify-content: center;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
   grid-area: 1/1/2/2;
   padding: 1em;
-  margin-top: 1em;
+  background: border-box linear-gradient(hsla(0, 0%, 0%, 0.311), hsla(0, 0%, 35%, 0.12));
 }
 nav .navbar-button {
   border: none;
   background-color: transparent;
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: start;
+  width: 90%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
+  position: fixed;
+  top: 60px;
+}
+.navigation-container .mobile-menu {
+  padding: 1.5em;
+}
+.navigation-container .mobile-navigation {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.border-line {
+  display: block;
+  width: 100%;
+  border: 0.005px solid hsla(0, 0%, 20%, 0.151);
 }
 
 .mastercraft-container {
@@ -292,7 +325,7 @@ nav .navbar-button {
   color: white;
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 43.75rem) {
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -311,7 +344,24 @@ nav .navbar-button {
     text-decoration: none;
     color: white;
   }
+  .main {
+    max-width: 30rem;
+  }
   .navbar-button {
     display: none;
+  }
+  .navigation-container {
+    display: none;
+  }
+  .fund-container ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+  }
+  .fund-container .line {
+    width: 1px;
+    height: 50px;
   }
 }/*# sourceMappingURL=style.css.map */
