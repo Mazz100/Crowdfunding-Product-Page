@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom';
 
 function Navbar() {
     const [openMenu, setOpenMenu] = useState(false);
+   
 
     return (
         <>

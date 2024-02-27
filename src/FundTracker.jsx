@@ -1,16 +1,20 @@
-
+import React, { useState, useEffect } from "react";
 
 function FundTracker() {
+    const [targetFund, setTargeFund] = useState("100,000");
+    const [currentFund, setCurrentFund] = useState("89,914")
+
+
     return (
         <>
             <div className="fund-container">
                 <ul>
                     <div>
                         <li>
-                            <span className="fund-remain">$89,914</span>
+                            <span className="fund-remain">${currentFund}</span>
                         </li>
                         <li>
-                            <span className="fund-total">of $100,000 backed</span>
+                            <span className="fund-total">of ${targetFund}backed</span>
                         </li>
                     </div>
 
@@ -35,6 +39,9 @@ function FundTracker() {
                     </div>
                 </ul>
 
+                <div className="progressbar-BG">
+                    <div className="progressbar-foreground"></div>
+                </div>
 
             </div>
         </>

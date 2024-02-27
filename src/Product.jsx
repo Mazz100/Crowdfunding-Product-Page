@@ -1,6 +1,10 @@
 import logoMasterCraft from './assets/images/logo-mastercraft.svg'
-import bookmark from './assets/images/icon-bookmark.svg'
+import bookmarksvg from './assets/images/icon-bookmark.svg'
+import React, { useState } from 'react';
+
 function Product() {
+    const [bookmark, setBookmark] = useState(false);
+
     return (
         <div className="mastercraft-container">
             <div className='mastercraft-logo'>
@@ -18,8 +22,11 @@ function Product() {
 
             <div className='back-project'>
                 <button className='backproject-button' aria-label='back project button'>Back this project</button>
-                <button className='bookmare-button' aria-label='bookmark button'>
-                    <img src={bookmark} alt="" />
+
+                <button onClick={() => !bookmark ? setBookmark(true) : setBookmark(false)} className='bookmare-button' 
+                aria-label='bookmark button'>
+                    <img className='bookmark-image' src={bookmarksvg} alt="" />
+                    <span aria-checked={bookmark ? "true" : "false"}>{bookmark ? 'Bookmarked' : 'Bookmark'}</span>
                 </button>
             </div>
         </div>

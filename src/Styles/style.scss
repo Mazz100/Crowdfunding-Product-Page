@@ -23,7 +23,7 @@ $primary-dark-cyan-color-activeStates: hsl(176, 72%, 28%);
 }
 
 body {
-    @include Flex(column);
+
 
     background-color: $body-bg-color;
     font-family: Commissioner, Arial, Helvetica, sans-serif;
@@ -31,12 +31,16 @@ body {
 
 .wrapper {
     @include Flex(column);
+
+    width: 100%;
 }
 
 header {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 1fr);
+    align-items: start;
+    place-content: stretch;
     width: 100%;
 
     picture {
@@ -55,12 +59,6 @@ header {
     display: none;
 }
 
-//Hover state for buttons
-button {
-    cursor: pointer;
-}
-
-
 //Navbar Styling Section
 nav {
     @include Flex(row);
@@ -70,13 +68,24 @@ nav {
     width: 100%;
     grid-area: 1/1/2/2;
     padding: 1em;
-    background: border-box linear-gradient(hsla(0, 0%, 0%, 0.311), hsla(0, 0%, 35%, 0.12));
+    background: border-box linear-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 20%, 0.1));
 
     .navbar-button {
         border: none;
         background-color: transparent;
 
     }
+}
+
+@keyframes slidedown {
+    0% {
+        transform: translateY(-500px)
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+
 }
 
 //Mobile menu navigation styling
@@ -88,16 +97,22 @@ nav {
     position: fixed;
     top: 60px;
 
-    .mobile-menu {
-        padding: 1.5em;
-
-    }
+    //Slide down animation
+    animation-name: slidedown;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
 
     .mobile-navigation {
         text-decoration: none;
         color: black;
         font-weight: 700;
         font-size: 1.25rem;
+        padding: 1.5em;
+        transition: color 0.2s linear;
+    }
+
+    .mobile-navigation:hover {
+        color: $primary-dark-cyan-color-activeStates;
     }
 
 }
@@ -107,7 +122,6 @@ nav {
     width: 100%;
     border: 0.005px solid hsla(0, 0%, 20%, 0.151);
 }
-
 
 //Product Styling Section
 .mastercraft-container {
@@ -153,11 +167,27 @@ nav {
         background-color: $primary-cyan-color-default;
         border: none;
         border-radius: 24px;
+        font-weight: 700;
+    }
+}
+
+.bookmare-button {
+    @include Flex(row);
+    background-color: hsl(0, 0%, 97%);
+    gap: 0.5em;
+    border: none;
+    border-radius: 24px;
+    padding: 0;
+
+    .bookmark-image{
+      
     }
 
-    .bookmare-button {
-        border: none;
-        background-color: transparent;
+    span {
+        font-weight: 700;
+        text-align: center;
+        padding: 0.6em;
+        display: none;
     }
 }
 
@@ -196,6 +226,22 @@ nav {
 
 }
 
+.progressbar-BG,
+.progressbar-foreground {
+    height: 15px;
+    border-radius: 16px;
+}
+
+.progressbar-BG {
+    background-color: hsl(0, 0%, 90%);
+}
+
+.progressbar-foreground {
+    background-color: $primary-cyan-color-default;
+    width: 70%;
+
+}
+
 /* ============== FundTracker Section Finish =============*/
 
 //Cards Styling Sections
@@ -204,7 +250,7 @@ nav {
     align-items: start;
     gap: 1.5em;
     @include backgroundStyle();
-    padding: 1em;
+    padding: 2em;
 
     .product-description {
         opacity: 0.7;
@@ -229,75 +275,130 @@ nav {
 
     }
 
-    .stock-group {
-        @include Flex(row);
-        gap: 0.5em;
-    }
+}
 
+.stock-group {
+    @include Flex(row);
+    justify-content: start;
+    gap: 0.5em;
+    margin-bottom: 0.6em;
 
     .stock-left {
         font-size: 2rem;
         font-weight: 700;
+
+
+        span {
+            opacity: 0.6;
+        }
     }
 
-    span {
-        opacity: 0.6;
-    }
 }
 
 .reward-button {
     display: block;
+    width: max-content;
     font-size: 0.875rem;
     padding: 1em 2em 1em 2em;
     border-radius: 24px;
     border: none;
     background-color: $primary-cyan-color-default;
     color: white;
-
 }
 
-@media (min-width: 43.75rem) {
 
-    .wrapper {
-        @include Flex(column);
-    }
+
+.out-of-stock-button {
+    cursor: not-allowed;
+    font-size: 0.875rem;
+    padding: 1em 2em 1em 2em;
+    border-radius: 24px;
+    border: none;
+    background-color: hsl(0, 0%, 75%);
+    color: white;
+}
+
+//Hover states for buttons
+button {
+    cursor: pointer;
+    transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+.backproject-button:hover {
+    background-color: $primary-dark-cyan-color-activeStates;
+}
+
+.bookmare-button:hover {
+    background-color: lightgrey;
+}
+
+.reward-button:hover {
+    background-color: $primary-dark-cyan-color-activeStates;
+}
+
+@media (min-width: 50rem) {
 
     header {
         .desktop-navigation {
             @include Flex(row);
             gap: 2em;
-            display: flex;
+
 
             .navigations {
                 text-decoration: none;
                 color: white;
+                transition: color 0.2s linear;
+            }
+
+            .navigations:hover {
+                color: $primary-dark-cyan-color-activeStates;
             }
         }
     }
 
     .main {
-        max-width: 30rem;
+        max-width: 38rem;
     }
-
 
     .navbar-button {
         display: none;
     }
 
-    .navigation-container{
+    .navigation-container {
         display: none;
+    }
+
+    .back-project {
+        .backproject-button {
+            width: max-content;
+            padding-left: 2em;
+            padding-right: 2em;
+        }
+
+        .bookmare-button {
+            span {
+                display: block;
+            }
+        }
     }
 
     .fund-container {
         ul {
             @include Flex(row);
-            gap: 1.5em;
+            justify-content: space-around;
+
         }
 
         .line {
             width: 1px;
             height: 50px;
         }
+    }
+
+    .desktop-flex-row {
+        @include Flex(row);
+        width: 100%;
+        justify-content: space-between;
     }
 
 }

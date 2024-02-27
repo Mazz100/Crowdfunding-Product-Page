@@ -68,7 +68,7 @@ a:not([class]) {
 /* Make images easier to work with */
 img,
 picture {
-  max-width: 100%;
+  width: 100%;
   display: block;
 }
 
@@ -91,10 +91,6 @@ textarea:not([rows]) {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: hsl(0, 0%, 98%);
   font-family: Commissioner, Arial, Helvetica, sans-serif;
 }
@@ -104,12 +100,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 header {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(1, 1fr);
+  align-items: start;
+  place-content: stretch;
   width: 100%;
 }
 header picture {
@@ -126,10 +125,6 @@ header picture {
   display: none;
 }
 
-button {
-  cursor: pointer;
-}
-
 nav {
   display: flex;
   flex-direction: row;
@@ -141,13 +136,21 @@ nav {
   width: 100%;
   grid-area: 1/1/2/2;
   padding: 1em;
-  background: border-box linear-gradient(hsla(0, 0%, 0%, 0.311), hsla(0, 0%, 35%, 0.12));
+  background: border-box linear-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 20%, 0.1));
 }
 nav .navbar-button {
   border: none;
   background-color: transparent;
 }
 
+@keyframes slidedown {
+  0% {
+    transform: translateY(-500px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .navigation-container {
   display: flex;
   flex-direction: column;
@@ -160,15 +163,20 @@ nav .navbar-button {
   box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
   position: fixed;
   top: 60px;
-}
-.navigation-container .mobile-menu {
-  padding: 1.5em;
+  animation-name: slidedown;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
 }
 .navigation-container .mobile-navigation {
   text-decoration: none;
   color: black;
   font-weight: 700;
   font-size: 1.25rem;
+  padding: 1.5em;
+  transition: color 0.2s linear;
+}
+.navigation-container .mobile-navigation:hover {
+  color: hsl(176, 72%, 28%);
 }
 
 .border-line {
@@ -224,10 +232,25 @@ nav .navbar-button {
   background-color: hsl(176, 50%, 47%);
   border: none;
   border-radius: 24px;
+  font-weight: 700;
 }
-.back-project .bookmare-button {
+
+.bookmare-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 97%);
+  gap: 0.5em;
   border: none;
-  background-color: transparent;
+  border-radius: 24px;
+  padding: 0;
+}
+.bookmare-button span {
+  font-weight: 700;
+  text-align: center;
+  padding: 0.6em;
+  display: none;
 }
 
 /* ============== Product Section Finish =================*/
@@ -263,6 +286,21 @@ nav .navbar-button {
   text-align: center;
 }
 
+.progressbar-BG,
+.progressbar-foreground {
+  height: 15px;
+  border-radius: 16px;
+}
+
+.progressbar-BG {
+  background-color: hsl(0, 0%, 90%);
+}
+
+.progressbar-foreground {
+  background-color: hsl(176, 50%, 47%);
+  width: 70%;
+}
+
 /* ============== FundTracker Section Finish =============*/
 .cards-container {
   display: flex;
@@ -274,7 +312,7 @@ nav .navbar-button {
   background-color: white;
   border-radius: 8px;
   box-shadow: 2px 2px 2px hsla(0, 0%, 95%, 0.5);
-  padding: 1em;
+  padding: 2em;
 }
 .cards-container .product-description {
   opacity: 0.7;
@@ -300,23 +338,28 @@ nav .navbar-button {
 .cards .description-text {
   opacity: 0.7;
 }
-.cards .stock-group {
+
+.stock-group {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  justify-content: start;
   gap: 0.5em;
+  margin-bottom: 0.6em;
 }
-.cards .stock-left {
+.stock-group .stock-left {
   font-size: 2rem;
   font-weight: 700;
 }
-.cards span {
+.stock-group .stock-left span {
   opacity: 0.6;
 }
 
 .reward-button {
   display: block;
+  width: -moz-max-content;
+  width: max-content;
   font-size: 0.875rem;
   padding: 1em 2em 1em 2em;
   border-radius: 24px;
@@ -325,27 +368,51 @@ nav .navbar-button {
   color: white;
 }
 
-@media (min-width: 43.75rem) {
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.out-of-stock-button {
+  cursor: not-allowed;
+  font-size: 0.875rem;
+  padding: 1em 2em 1em 2em;
+  border-radius: 24px;
+  border: none;
+  background-color: hsl(0, 0%, 75%);
+  color: white;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+.backproject-button:hover {
+  background-color: hsl(176, 72%, 28%);
+}
+
+.bookmare-button:hover {
+  background-color: lightgrey;
+}
+
+.reward-button:hover {
+  background-color: hsl(176, 72%, 28%);
+}
+
+@media (min-width: 50rem) {
   header .desktop-navigation {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 2em;
-    display: flex;
   }
   header .desktop-navigation .navigations {
     text-decoration: none;
     color: white;
+    transition: color 0.2s linear;
+  }
+  header .desktop-navigation .navigations:hover {
+    color: hsl(176, 72%, 28%);
   }
   .main {
-    max-width: 30rem;
+    max-width: 38rem;
   }
   .navbar-button {
     display: none;
@@ -353,15 +420,32 @@ nav .navbar-button {
   .navigation-container {
     display: none;
   }
+  .back-project .backproject-button {
+    width: -moz-max-content;
+    width: max-content;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  .back-project .bookmare-button span {
+    display: block;
+  }
   .fund-container ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1.5em;
+    justify-content: space-around;
   }
   .fund-container .line {
     width: 1px;
     height: 50px;
+  }
+  .desktop-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
   }
 }/*# sourceMappingURL=style.css.map */
