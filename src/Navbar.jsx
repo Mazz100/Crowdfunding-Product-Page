@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom';
 
 function Navbar() {
     const [openMenu, setOpenMenu] = useState(false);
-   
+
 
     return (
         <>
@@ -32,8 +32,9 @@ function Navbar() {
                 </button>
 
                 {openMenu && createPortal(
-                    <MobileMenu />,
-
+                    <div className='portal-group'>
+                        <MobileMenu />,
+                    </div>,
                     document.body
 
                 )}

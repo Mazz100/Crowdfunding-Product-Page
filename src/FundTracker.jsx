@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 function FundTracker() {
-    const [targetFund, setTargeFund] = useState("100,000");
-    const [currentFund, setCurrentFund] = useState("89,914")
+    const [targetFund, setTargetFund] = useState("100,000");
+    const [currentFund, setCurrentFund] = useState("89,914");
 
+    const progressbarWidth = { width: (`${(parseFloat(currentFund) / parseFloat(targetFund)) * 100}%`) };
 
     return (
         <>
@@ -14,7 +15,7 @@ function FundTracker() {
                             <span className="fund-remain">${currentFund}</span>
                         </li>
                         <li>
-                            <span className="fund-total">of ${targetFund}backed</span>
+                            <span className="fund-total">of ${targetFund} backed</span>
                         </li>
                     </div>
 
@@ -39,10 +40,12 @@ function FundTracker() {
                     </div>
                 </ul>
 
-                <div className="progressbar-BG">
-                    <div className="progressbar-foreground"></div>
+                <div className="progressbar-container">
+                    <div className="progressbar-BG">
+                        <div style={progressbarWidth} className="progressbar-filling"></div>
+                    </div>
                 </div>
-
+                
             </div>
         </>
     );

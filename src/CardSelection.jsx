@@ -38,10 +38,12 @@ function CardSelection() {
                     to allow notepads, pens, and USB sticks to be stored under the stand.
                 </p>
 
-                {cards.map(cards => <div key={cards.title} className="cards">
-                    <h4 className="reward-title">{cards.title}</h4>
+                {cards.map(cards => <div key={cards.title} className="cards" style={cards.stock == 0 ? { opacity: 0.6 } : null} >
+                    <div className="desktop-flex-row">
+                        <h4 className="reward-title">{cards.title}</h4>
 
-                    <p className="pledge-text">{cards.pledge}</p>
+                        <p className="pledge-text">{cards.pledge}</p>
+                    </div>
 
                     <p className="description-text">{cards.description}</p>
 
@@ -55,7 +57,7 @@ function CardSelection() {
                         <RewardButton cards={cards} />
                     </div>
                 </div>)}
-            </div>
+            </div >
         </>
     );
 }
