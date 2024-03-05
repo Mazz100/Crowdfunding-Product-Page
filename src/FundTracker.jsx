@@ -42,7 +42,9 @@ function FundTracker() {
 
                 <div className="progressbar-container">
                     <div className="progressbar-BG">
-                        <div style={progressbarWidth} className="progressbar-filling"></div>
+                        <div style={progressbarWidth} 
+                        className="progressbar-filling"
+                        aria-label="backed progressbar"></div>
                     </div>
                 </div>
                 

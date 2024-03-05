@@ -1,12 +1,33 @@
 import crowdfundLogo from './assets/images/logo.svg'
 import hamburgerIcon from './assets/images/icon-hamburger.svg'
 import closeIcon from './assets/images/icon-close-menu.svg'
+/*======================================================*/
 import MobileMenu from './MobileMenu';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 function Navbar() {
-    const [openMenu, setOpenMenu] = useState(false);
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const menuRef = useRef(null);
+
+
+
+    function checkOutsideClick(event) {
+        if (isOpenMenu && menuRef.current.contains(event.target)) {
+            setIsOpenMenu(false);
+        }
+
+    }
+    console.log(isOpenMenu);
+
+    useEffect(() => {
+        //Add event listiner with the outside of menu function
+        document.addEventListener('mousedown', checkOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', checkOutsideClick);
+        }
+    }, [isOpenMenu])
 
 
     return (
@@ -24,21 +45,20 @@ function Navbar() {
                     <a href="#" className='navigations' aria-label='get started'>Get Started</a>
                 </div>
 
-                <button onClick={() => !openMenu ? setOpenMenu(true) : setOpenMenu(false)}
+                <button onClick={() => !isOpenMenu ? setIsOpenMenu(true) : setIsOpenMenu(false)}
                     className='navbar-button'
                     aria-label='navbar menu button'
-                    aria-expanded={openMenu ? "true" : 'false'}>
-                    <img src={!openMenu ? hamburgerIcon : closeIcon} alt="" />
+                    aria-expanded={isOpenMenu ? "true" : 'false'}>
+                    <img src={!isOpenMenu ? hamburgerIcon : closeIcon} alt="" />
                 </button>
 
-                {openMenu && createPortal(
-                    <div className='portal-group'>
+                {isOpenMenu && createPortal(
+                    <div ref={menuRef} className='portal-group'>
                         <MobileMenu />,
                     </div>,
                     document.body
 
                 )}
-
             </nav>
 
         </>
