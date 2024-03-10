@@ -1,11 +1,12 @@
 import Product from "./Product";
 import Navbar from "./Navbar";
 import FundTracker from "./FundTracker";
-import CardSelection from "./CardSelection";
+import ProductCards from "./ProductCards";
 import desktopBG from './assets/images/image-hero-desktop.jpg'
 import mobileBG from './assets/images/image-hero-mobile.jpg'
-
+import React, { useState } from "react";
 function CrowdfundMain() {
+
 
     return (
         <>
@@ -20,7 +21,7 @@ function CrowdfundMain() {
                 <main className="main">
                     <Product />
                     <FundTracker />
-                    <CardSelection />
+                    <ProductCards />
                 </main>
 
                 <footer className="attribution">

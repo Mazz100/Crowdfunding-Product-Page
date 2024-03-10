@@ -3,32 +3,11 @@ import hamburgerIcon from './assets/images/icon-hamburger.svg'
 import closeIcon from './assets/images/icon-close-menu.svg'
 /*======================================================*/
 import MobileMenu from './MobileMenu';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 function Navbar() {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
-    const menuRef = useRef(null);
-
-
-
-    function checkOutsideClick(event) {
-        if (isOpenMenu && menuRef.current.contains(event.target)) {
-            setIsOpenMenu(false);
-        }
-
-    }
-    console.log(isOpenMenu);
-
-    useEffect(() => {
-        //Add event listiner with the outside of menu function
-        document.addEventListener('mousedown', checkOutsideClick);
-
-        return () => {
-            document.removeEventListener('mousedown', checkOutsideClick);
-        }
-    }, [isOpenMenu])
-
 
     return (
         <>
@@ -53,7 +32,7 @@ function Navbar() {
                 </button>
 
                 {isOpenMenu && createPortal(
-                    <div ref={menuRef} className='portal-group'>
+                    <div className='portal-group'>
                         <MobileMenu />,
                     </div>,
                     document.body

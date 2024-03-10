@@ -331,25 +331,46 @@ nav {
 
 /*=============== Card Section Finish ====================*/
 
+@keyframes popupModal {
+    0% {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 //Pledge Modal Styling Section
 .modal-container {
-    @include Flex(column);
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    display: grid;
+    place-content: center;
+    overflow-y: scroll;
 
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .pledge-form {
     @include Flex(column);
     gap: 1em;
     align-items: start;
-    max-width: 21rem;
-    height: 100%;
+    max-width: 20rem;
+    size: 0.5;
     @include backgroundStyle();
-    padding: 1em;
+    padding: 2em;
+
+    //Popup animation
+    animation-name: popupModal;
+    animation-duration: 1s;
+    animation-iteration-count: 0.07s;
 
     .pledge-text {
         color: $primary-cyan-color-default;
@@ -388,18 +409,25 @@ nav {
     gap: 0.5em;
 }
 
+//Custom Radio Styling
 input[type="radio"] {
+    display: grid;
+    place-content: center;
+
     appearance: none;
     margin: 0;
+    background-color: #fff;
+    cursor: pointer;
 
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.15em;
+    height: 1.15em;
     font-size: inherit;
     color: lightgray;
-    border: 0.05em solid lightgray;
+    border: 0.15em solid lightgray;
     border-radius: 50%;
 }
 
+//::before pseudo class used for initial styling of hiding 
 input[type="radio"]::before {
     content: "";
     width: 0.65em;
@@ -412,8 +440,9 @@ input[type="radio"]::before {
 
 input[type="radio"]:checked::before {
     transform: scale(1);
-
 }
+
+/*=============================*/
 
 .title-flex {
     @include Flex(row-reverse);
@@ -425,6 +454,41 @@ input[type="radio"]:checked::before {
     border: none;
     background-color: transparent;
     margin-left: auto;
+}
+
+//Pledge Amount Input Styling
+.pledgeform-container {
+    border-top: 0.015em solid lightgray;
+
+    p {
+        font-size: 0.875rem;
+        text-align: center;
+        color: hsl(0, 0%, 50%);
+    }
+}
+
+.pledge-input-group {
+    @include Flex(row);
+    margin-top: 1em;
+    gap: 1em;
+
+    .pledge-input {
+        width: 5em;
+        padding: 0.5em;
+        border: solid 0.05em lightgray;
+        border-radius: 24px;
+        text-align: center;
+    }
+}
+
+.continue-button {
+    display: block;
+    font-size: 0.875rem;
+    padding: 0.8em 1.2em 0.8em 1.2em;
+    border-radius: 24px;
+    border: none;
+    background-color: $primary-cyan-color-default;
+    color: white;
 }
 
 //Hover states for buttons
@@ -451,6 +515,10 @@ button {
     background-color: $primary-dark-cyan-color-activeStates;
 }
 
+.continue-button:hover {
+    background-color: $primary-dark-cyan-color-activeStates;
+}
+
 //Footer
 .attribution {
     display: block;
@@ -474,7 +542,6 @@ button {
         .desktop-navigation {
             @include Flex(row);
             gap: 2em;
-
 
             .navigations {
                 text-decoration: none;
@@ -535,6 +602,21 @@ button {
         @include Flex(row);
         width: 100%;
         justify-content: space-between;
+    }
+
+    .pledgeform-container {
+        @include Flex(row);
+        justify-content: space-between;
+
+    }
+
+    .pledge-form {
+        max-width: 44rem;
+    }
+
+    .title-pledge-group {
+        @include Flex(row);
+        gap: 0.6em;
     }
 
 }

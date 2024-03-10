@@ -1,35 +1,19 @@
-import React, { useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import closeIcon from './assets/images/icon-close-modal.svg'
-
+//Importing the backed context
+import { backedContext } from "./FundTracker";
 
 function PledgeModal({ cards, closeModal }) {
     const [selectedPledge, setSelectedPledge] = useState('');
+    const [pledge, setPledge] = useState('');
 
+    function handleSelectedPledge(event) {
+        setSelectedPledge(event.target.value);
+    }
 
-    const pledges = [
-        {
-            value: "Pledge with no reward",
-            description: "Choose to support us without a reward if you simply blieve in our project. As a backer, you will be signed up to recieve product updates via email",
-        },
-        {
-            value: "Bamboo Stand",
-            pledge: "Pledge $25 or more",
-            description: "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
-            stock: 101
-        },
-        {
-            value: "Black Edition Stand",
-            pledge: "Pledge $75 or more",
-            description: "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-            stock: 64
-        },
-        {
-            value: "Mahogany Special Edition",
-            pledge: "Pledge $200 or more",
-            description: "  You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-            stock: 0
-        },
-    ]
+    function handlePledgeValue(event) {
+        setPledge(event.target.value);
+    }
 
 
     return (
@@ -50,25 +34,70 @@ function PledgeModal({ cards, closeModal }) {
                 </p>
 
                 <form action="">
-                    {pledges.map(pledges => <div key={pledges.value} className="modal-input">
+                    <div className="modal-input">
                         <div className="pledgeRadio-flex-row">
-                            <input type="radio" name="pledges" />
+                            <input type="radio"
+                                name="pledges"
+                                id="Pledge with no reward"
+                                value="Pledge with no reward"
+                                onChange={handleSelectedPledge}
+                            />
                             <div>
-                                <label style={{ fontWeight: 700 }} htmlFor={pledges.value}>{pledges.value}</label>
-                                <p className="pledge-text">{pledges.pledge}</p>
+                                <label style={{ fontWeight: 700 }} htmlFor="Pledge with no reward">Pledge with no reward</label>
                             </div>
                         </div>
 
-                        <p className="description-text">{pledges.description}</p>
+                        <p className="description-text">
+                            Choose to support us without a reward if you simply believe in our project.
+                            As a backer, you will be signed up to recieve product updates via email
+                        </p>
+                    </div>
 
-                        <div className="stock-group">
-                            {pledges.stock || pledges.stock == 0 ? <p className="stock-left">{pledges.stock}</p> : null}
-                            {pledges.stock || pledges.stock == 0 ? <span> left</span> : null}
+                    {cards.map(card => <div key={card.title} className="modal-input"
+                        style={selectedPledge == card.title ? { borderColor: "hsl(176, 50%, 47%)" } : null
+                            || card.stock == 0 ? { opacity: 0.4 } : null}>
+                        <div className="pledgeRadio-flex-row">
+                            {card.stock > 0 ? <input type="radio"
+                                onChange={handleSelectedPledge}
+                                name="pledges"
+                                id={card.title}
+                                value={card.title}
+
+                            /> : null}
+                            <div className="title-pledge-group">
+                                <label style={{ fontWeight: 700 }} htmlFor={card.title}>{card.title}</label>
+                                <p className="pledge-text">{card.pledge}</p>
+                            </div>
                         </div>
 
+                        <p className="description-text">{card.description}</p>
+
+                        <div className="stock-group">
+                            <p className="stock-left">{card.stock}</p>
+                            <span> left</span>
+                        </div>
+
+                        {selectedPledge == card.title ? <div
+                            className="pledgeform-container">
+                            <p>Enter your pledge</p>
+
+                            <div className="pledge-input-group">
+                                <input type="number"
+                                    onChange={handlePledgeValue}
+                                    placeholder="$"
+                                    className="pledge-input"
+                                    value={pledge} />
+                                <button onClick={closeModal}
+                                    type="button"
+                                    className="continue-button">
+                                    Continue
+                                </button>
+                            </div>
+                        </div> : null}
+
                     </div>)}
-                </form>
-            </div>
+                </form >
+            </div >
         </>
     );
 }

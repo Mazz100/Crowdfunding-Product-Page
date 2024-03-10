@@ -1,28 +1,28 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import PledgeModal from "./PldgeModal";
 
-function RewardButton({ cards }) {
-    const [pledgeModal, setPledgeModal] = useState(false);
-    const modalRef = useRef(null);
+function RewardButton({ cards, stock }) {
+    const [isPledgeModalOpen, setIsPledgeModalOpen] = useState(false);
 
-    function closeModal(){
-        setPledgeModal(false);
+    function closeModal() {
+        setIsPledgeModalOpen(false);
     }
 
     return (
         <>
-            <button className={cards.stock > 0 ? 'reward-button' : 'out-of-stock-button'}
-                onClick={() => setPledgeModal(true)}
+            <button className={stock > 0 ? 'reward-button' : 'out-of-stock-button'}
+                onClick={stock != 0 ? () => setIsPledgeModalOpen(true) : null}
                 aria-label="reward button"
-                aria-expanded='false'>
-                {cards.stock > 0 ? `Select Reward` : `Out of Stock`}
+                aria-hidden='false'>
+                {stock > 0 ? `Select Reward` : `Out of Stock`}
             </button>
 
-            {pledgeModal && createPortal(
+            {isPledgeModalOpen && createPortal(
                 <div className="modal-container">
                     <PledgeModal cards={cards} closeModal={closeModal} />
                 </div>,
+
                 document.body,
             )}
         </>

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
+export const backedContext = React.createContext();
 
 function FundTracker() {
     const [targetFund, setTargetFund] = useState("100,000");
     const [currentFund, setCurrentFund] = useState("89,914");
+
 
     const progressbarWidth = { width: (`${(parseFloat(currentFund) / parseFloat(targetFund)) * 100}%`) };
 
@@ -12,7 +14,7 @@ function FundTracker() {
                 <ul>
                     <div>
                         <li>
-                            <span className="fund-remain">${currentFund}</span>
+                                <span className="fund-remain">${currentFund}</span>
                         </li>
                         <li>
                             <span className="fund-total">of ${targetFund} backed</span>
@@ -42,12 +44,13 @@ function FundTracker() {
 
                 <div className="progressbar-container">
                     <div className="progressbar-BG">
-                        <div style={progressbarWidth} 
-                        className="progressbar-filling"
-                        aria-label="backed progressbar"></div>
+                        <div style={progressbarWidth}
+                            className="progressbar-filling"
+                            aria-label="backed progressbar">
+                        </div>
                     </div>
                 </div>
-                
+
             </div>
         </>
     );
