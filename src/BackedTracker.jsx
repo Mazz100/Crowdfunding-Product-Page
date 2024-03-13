@@ -1,12 +1,11 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-export const backedContext = React.createContext();
+import React, { useState, useEffect, useContext } from "react";
+import { backedContext } from "./CrowdfundMain";
 
-function FundTracker() {
-    const [targetFund, setTargetFund] = useState("100,000");
-    const [currentFund, setCurrentFund] = useState("89,914");
-
-
-    const progressbarWidth = { width: (`${(parseFloat(currentFund) / parseFloat(targetFund)) * 100}%`) };
+function BackedTracker() {
+    const [targetBacked, setTargetBacked] = useState(100000);
+    const [backed, setBacked] = useContext(backedContext);
+   
+    const progressbarWidth = { width: (`${(backed / targetBacked) * 100}%`) };
 
     return (
         <>
@@ -14,10 +13,10 @@ function FundTracker() {
                 <ul>
                     <div>
                         <li>
-                                <span className="fund-remain">${currentFund}</span>
+                            <span className="fund-remain">${backed.toLocaleString()}</span>
                         </li>
                         <li>
-                            <span className="fund-total">of ${targetFund} backed</span>
+                            <span className="fund-total">of ${targetBacked.toLocaleString()} backed</span>
                         </li>
                     </div>
 
@@ -56,4 +55,4 @@ function FundTracker() {
     );
 }
 
-export default FundTracker
+export default BackedTracker

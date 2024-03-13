@@ -333,12 +333,12 @@ nav {
 
 @keyframes popupModal {
     0% {
-        transform: translateY(200px);
+        transform: scale(0.8);
         opacity: 0;
     }
 
     100% {
-        transform: translateY(0);
+        transform: scale(1);
         opacity: 1;
     }
 }
@@ -354,29 +354,25 @@ nav {
     z-index: 10;
     display: grid;
     place-content: center;
-    overflow-y: scroll;
 
 }
 
 .pledge-form {
-    @include Flex(column);
-    gap: 1em;
-    align-items: start;
     max-width: 20rem;
-    size: 0.5;
     @include backgroundStyle();
     padding: 2em;
-
+    overflow-y: auto;
     //Popup animation
     animation-name: popupModal;
-    animation-duration: 1s;
-    animation-iteration-count: 0.07s;
+    animation-duration: 0.2s;
 
+    .description-text{
+        margin-bottom: 1em;
+    }
     .pledge-text {
         color: $primary-cyan-color-default;
         font-weight: 600;
     }
-
 
 }
 

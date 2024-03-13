@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import PledgeModal from "./PldgeModal";
+import React, { useEffect, useState } from "react"
+
 
 function RewardButton({ cards, stock }) {
     const [isPledgeModalOpen, setIsPledgeModalOpen] = useState(false);

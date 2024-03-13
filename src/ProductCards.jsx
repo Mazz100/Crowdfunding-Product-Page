@@ -1,9 +1,8 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import RewardButton from "./RewardButton";
 
-
 function ProductCards() {
-
+  
 
     const cards = [
         {
@@ -58,7 +57,8 @@ function ProductCards() {
                         </span>
                     </div>
                     {/*Passing a stock prop for button conditional rendering*/}
-                    <RewardButton cards={cards} stock={card.stock}/>
+                    <RewardButton cards={cards} stock={card.stock} />
+
                 </div>
             </div>)}
 

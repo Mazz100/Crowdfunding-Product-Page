@@ -1,20 +1,44 @@
 import React, { useContext, useEffect, useState } from "react"
 import closeIcon from './assets/images/icon-close-modal.svg'
-//Importing the backed context
-import { backedContext } from "./FundTracker";
+import { backedContext } from "./CrowdfundMain";
 
 function PledgeModal({ cards, closeModal }) {
     const [selectedPledge, setSelectedPledge] = useState('');
     const [pledge, setPledge] = useState('');
+    const [modalComplete, setModalIsComplete] = useState(false);
+    //backed state referenced by context
+    const [backed, setBacked] = useContext(backedContext);
 
     function handleSelectedPledge(event) {
         setSelectedPledge(event.target.value);
-    }
 
+    }
+    console.log(selectedPledge);
     function handlePledgeValue(event) {
         setPledge(event.target.value);
+
+        if (pledge.length >= 4) {
+            setPledge('');
+        }
+
     }
 
+    function addPledge() {
+        //Extracting card titles and checking minimum pledge required
+        const minimumPledge = cards.map(card => card.title);
+        const addedPledge = backed + parseFloat(pledge);
+
+        if (pledge !== '' && pledge !== 0 &&
+            selectedPledge == minimumPledge[0] && pledge >= 25 ||
+            selectedPledge == minimumPledge[1] && pledge >= 75) {
+
+            setBacked(addedPledge);
+            closeModal();
+        }
+        else {
+            alert(`Please insert a minimum pledge!`);
+        }
+    }
 
     return (
         <>
@@ -63,6 +87,7 @@ function PledgeModal({ cards, closeModal }) {
                                 id={card.title}
                                 value={card.title}
 
+
                             /> : null}
                             <div className="title-pledge-group">
                                 <label style={{ fontWeight: 700 }} htmlFor={card.title}>{card.title}</label>
@@ -76,7 +101,7 @@ function PledgeModal({ cards, closeModal }) {
                             <p className="stock-left">{card.stock}</p>
                             <span> left</span>
                         </div>
-
+                        
                         {selectedPledge == card.title ? <div
                             className="pledgeform-container">
                             <p>Enter your pledge</p>
@@ -87,7 +112,7 @@ function PledgeModal({ cards, closeModal }) {
                                     placeholder="$"
                                     className="pledge-input"
                                     value={pledge} />
-                                <button onClick={closeModal}
+                                <button onClick={addPledge}
                                     type="button"
                                     className="continue-button">
                                     Continue

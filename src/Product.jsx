@@ -1,11 +1,18 @@
 import logoMasterCraft from './assets/images/logo-mastercraft.svg'
 import bookmarksvg from './assets/images/icon-bookmark.svg'
+import PledgeModal from "./PldgeModal";
 import React, { useContext, useState } from 'react';
+import { cardsMapContext } from './CrowdfundMain';
+import { createPortal } from 'react-dom';
 
-
-function Product(cards) {
+function Product() {
     const [bookmark, setBookmark] = useState(false);
-  
+    const [isPledgeModalOpen, setIsPledgeModalOpen] = useState(false);
+    const cards = useContext(cardsMapContext);
+
+    function closeModal() {
+        setIsPledgeModalOpen(false);
+    }
 
 
     return (
@@ -35,6 +42,14 @@ function Product(cards) {
                     </button>
                 </div>
             </div>
+
+            {isPledgeModalOpen && createPortal(
+                <div className="modal-container">
+                    <PledgeModal cards={cards} closeModal={closeModal} />
+                </div>,
+
+                document.body,
+            )}
         </>
 
     );
