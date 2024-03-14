@@ -33,20 +33,20 @@ function Product({ completeState, completeCondition }) {
                 <div className='back-project'>
                     <button className='backproject-button'
                         aria-label='back project button'
-                        aria-describedby='pledge dialog button'
                         aria-hidden={isPledgeModalOpen ? "true" : "false"}
                         onClick={() => setIsPledgeModalOpen(true)}>Back this project
                     </button>
 
                     <button onClick={() => !bookmark ? setBookmark(true) : setBookmark(false)}
                         className='bookmare-button'
-                        aria-label='bookmark button'>
+                        aria-label='bookmark button'
+                    >
 
                         <svg className='bookmark-image' width="56" height="56" xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" fillRule="evenodd"><circle fill={bookmark ? '#147b74' : "#2F2F2F"} cx="28" cy="28" r="28" />
                                 <path fill={bookmark ? '#FFF' : "#B1B1B1"} d="M23 19v18l5-5.058L33 37V19z" /></g></svg>
 
-                        <span aria-checked={bookmark ? "true" : "false"}
+                        <span
                             style={bookmark ? { color: '#147b74' } : null} >{bookmark ? 'Bookmarked' : 'Bookmark'}
                         </span>
                     </button>

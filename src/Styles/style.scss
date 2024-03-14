@@ -240,16 +240,14 @@ nav {
 //Backed progressbar
 .progressbar-container {
     position: relative;
-    margin-bottom: 2em;
+    margin-block: 1.5em;
     width: 100%;
 }
 
 .progressbar-BG,
 .progressbar-filling {
-    position: absolute;
-    top: 0;
     width: 100%;
-    height: 15px;
+    height: 12px;
     border-radius: 16px;
     background-color: hsl(0, 0%, 90%);
 }
@@ -623,7 +621,7 @@ button {
     }
 
     .main {
-        max-width: 38rem;
+        max-width: 44rem;
     }
 
     /* Mobile navigation visibility*/
@@ -636,10 +634,11 @@ button {
     }
 
     /*==================*/
-
+    
+    //Desktop nav style
     nav {
         justify-content: space-around;
-
+        padding: 2em;
     }
 
     .back-project {
@@ -660,8 +659,7 @@ button {
     .backed-container {
         ul {
             @include Flex(row);
-            justify-content: space-around;
-
+            justify-content: space-evenly;
         }
 
         .line {
@@ -670,11 +668,14 @@ button {
         }
     }
 
+    // Product Cards Desktop Style
     .desktop-flex-row {
         @include Flex(row);
         width: 100%;
         justify-content: space-between;
     }
+
+
 
     .pledgeform-container {
         @include Flex(row);
@@ -685,7 +686,7 @@ button {
     .pledge-form {
         max-width: 44rem;
 
-        .description-text{
+        .description-text {
             font-size: 1rem;
         }
     }

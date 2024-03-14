@@ -13,7 +13,7 @@ function PledgeModal({ cards, title, defaultTitle, closeModal, completeState }) 
     const [backed, setBacked] = useContext(backedContext);
 
     //Prevent symbols on number input
-    const exceptThisSymbols = ['e', 'E', '+', '-'];
+    const exceptThisSymbols = ['e', 'E', '+', '-', '.'];
 
 
     function handleSelectedPledge(event) {

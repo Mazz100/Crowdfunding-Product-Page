@@ -11,50 +11,52 @@ function BackedTracker() {
 
 
     return (
-        <>
-            <div className="backed-container">
-                <ul>
-                    <div>
-                        <li>
-                            <span className="backed">${backed.toLocaleString()}</span>
-                        </li>
-                        <li>
-                            <span className="backed-total">of ${targetBacked.toLocaleString()} backed</span>
-                        </li>
-                    </div>
 
-                    <div className="line"></div>
-                    <div>
-                        <li>
-                            <span className="backers">{totalBacker.toLocaleString()}</span>
-                        </li>
-                        <li>
-                            <span className="backers-total">total backers</span>
-                        </li>
-                    </div>
-                    <div className="line"></div>
+        <div className="backed-container">
+            <ul>
+                <li>
+                    <li>
+                        <span className="backed">${backed.toLocaleString()}</span>
+                    </li>
+                    <li>
+                        <span className="backed-total">of ${targetBacked.toLocaleString()} backed</span>
+                    </li>
+                </li>
 
-                    <div>
-                        <li>
-                            <span className="backed-days">56</span>
-                        </li>
-                        <li>
-                            <span className="backed-days-total">days left</span>
-                        </li>
-                    </div>
-                </ul>
+                <div className="line"></div>
 
-                <div className="progressbar-container">
-                    <div className="progressbar-BG">
-                        <div style={backed >= targetBacked ? { width: (`100%`) } : progressbarWidth}
-                            className="progressbar-filling"
-                            aria-label="backed progressbar">
-                        </div>
+                <li>
+                    <li>
+                        <span className="backers">{totalBacker.toLocaleString()}</span>
+                    </li>
+                    <li>
+                        <span className="backers-total">total backers</span>
+                    </li>
+                </li>
+
+
+                <div className="line"></div>
+
+                <li>
+                    <li>
+                        <span className="backed-days">56</span>
+                    </li>
+                    <li>
+                        <span className="backed-days-total">days left</span>
+                    </li>
+                </li>
+            </ul>
+
+            <div className="progressbar-container">
+                <div className="progressbar-BG">
+                    <div style={backed >= targetBacked ? { width: (`100%`) } : progressbarWidth}
+                        className="progressbar-filling"
+                    >
                     </div>
                 </div>
-
             </div>
-        </>
+
+        </div >
     );
 }
 

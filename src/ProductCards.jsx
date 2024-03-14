@@ -9,7 +9,7 @@ function ProductCards({ completeState, completeCondition }) {
 
     return (
         <div className="cards-container">
-            <h3>About this project</h3>
+            <h2>About this project</h2>
 
             <p className="product-description">The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform that elevates your screen
                 to a more comfortable viewing height. Placing your monitor at eye level has the potential to improve

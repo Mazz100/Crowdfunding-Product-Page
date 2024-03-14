@@ -305,16 +305,14 @@ nav .navbar-button {
 
 .progressbar-container {
   position: relative;
-  margin-bottom: 2em;
+  margin-block: 1.5em;
   width: 100%;
 }
 
 .progressbar-BG,
 .progressbar-filling {
-  position: absolute;
-  top: 0;
   width: 100%;
-  height: 15px;
+  height: 12px;
   border-radius: 16px;
   background-color: hsl(0, 0%, 90%);
 }
@@ -672,7 +670,7 @@ button {
     color: rgb(60, 180, 172);
   }
   .main {
-    max-width: 38rem;
+    max-width: 44rem;
   }
   /* Mobile navigation visibility*/
   .navbar-button {
@@ -684,6 +682,7 @@ button {
   /*==================*/
   nav {
     justify-content: space-around;
+    padding: 2em;
   }
   .back-project .backproject-button {
     width: 30%;
@@ -699,7 +698,7 @@ button {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
   .backed-container .line {
     width: 1px;
