@@ -4,15 +4,16 @@ import BackedTracker from "./BackedTracker";
 import ProductCards from "./ProductCards";
 import desktopBG from './assets/images/image-hero-desktop.jpg'
 import mobileBG from './assets/images/image-hero-mobile.jpg'
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 //Contexts management
 export const backedContext = React.createContext();
+export const totalBackersContext = React.createContext();
 export const cardsMapContext = React.createContext();
+
 function CrowdfundMain() {
     const [backed, setBacked] = useState(89914);
-    backed.toLocaleString();
-
+    const [totalBacker, setTotalBackers] = useState(5007);
 
     const cards = [
         {
@@ -36,34 +37,34 @@ function CrowdfundMain() {
     ]
 
 
+
     return (
-        <>
-            <div className="wrapper">
-                <header>
-                    <picture>
-                        <source srcSet={desktopBG} media="(min-width: 50rem)" />
-                        <img src={mobileBG} alt="" />
-                    </picture>
-                    <Navbar />
-                </header>
-                <main className="main">
-                    {/*Providing context reference of backed state and cards object arrays */}
-                    <backedContext.Provider value={[backed, setBacked]}>
-                        <cardsMapContext.Provider value={cards}>
+        <div className="wrapper">
+            <header>
+                <picture>
+                    <source srcSet={desktopBG} media="(min-width: 50rem)" />
+                    <img src={mobileBG} alt="" />
+                </picture>
+                <Navbar />
+            </header>
+            <main className="main">
+                {/*Providing context reference of backed state and cards object arrays */}
+                <backedContext.Provider value={[backed, setBacked]}>
+                    <cardsMapContext.Provider value={cards}>
+                        <totalBackersContext.Provider value={[totalBacker, setTotalBackers]}>
                             <Product />
-                        </cardsMapContext.Provider>
+                            <BackedTracker />
+                            <ProductCards />
+                        </totalBackersContext.Provider>
+                    </cardsMapContext.Provider>
+                </backedContext.Provider>
+            </main>
 
-                        <BackedTracker />
-                        <ProductCards />
-                    </backedContext.Provider>
-                </main>
-
-                <footer className="attribution">
-                    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-                    Coded by <a href="https://github.com/Mazz100">Mazen Hassan</a>.
-                </footer>
-            </div>
-        </>
+            <footer className="attribution">
+                Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+                Coded by <a href="https://github.com/Mazz100">Mazen Hassan</a>.
+            </footer>
+        </div>
     );
 }
 

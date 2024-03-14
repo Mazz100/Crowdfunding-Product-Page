@@ -12,7 +12,6 @@ function Navbar() {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
 
     return (
-        <>
             <nav>
                 <a href="#" aria-label='Home'>
                     <img src={crowdfundLogo} alt="Crowdfund" />
@@ -41,8 +40,6 @@ function Navbar() {
 
                 )}
             </nav>
-
-        </>
     );
 
 }

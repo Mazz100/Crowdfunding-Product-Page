@@ -1,30 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import RewardButton from "./RewardButton";
+import SuccessModal from "./SuccessModal";
+
+import { cardsMapContext } from "./CrowdfundMain";
+import { createPortal } from "react-dom";
 
 function ProductCards() {
-  
+    const cards = useContext(cardsMapContext);
+    //Complete modal state used for pledge confirmation
+    const [modalComplete, setModalIsComplete] = useState(false);
 
-    const cards = [
-        {
-            title: "Bamboo Stand",
-            pledge: "Pledge $25 or more",
-            description: "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
-            stock: 101
-        },
-        {
-            title: "Black Edition Stand",
-            pledge: "Pledge $75 or more",
-            description: "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-            stock: 64
-        },
-        {
-            title: "Mahogany Special Edition",
-            pledge: "Pledge $200 or more",
-            description: "  You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-            stock: 0
-        },
-    ]
-
+    function handleCompleteState() {
+        if (!modalComplete) {
+            setModalIsComplete(true);
+        }
+        else {
+            setModalIsComplete(false);
+        }
+    }
 
     return (
         <div className="cards-container">
@@ -57,10 +50,19 @@ function ProductCards() {
                         </span>
                     </div>
                     {/*Passing a stock prop for button conditional rendering*/}
-                    <RewardButton cards={cards} stock={card.stock} />
+                    <RewardButton cards={cards} stock={card.stock} title={card.title} completeState={handleCompleteState} />
 
                 </div>
             </div>)}
+
+            {/*Modal Complete UI*/}
+            {modalComplete && createPortal(
+                <div className="complete-modal-container">
+                    <SuccessModal completeState={handleCompleteState}/>,
+                </div>,
+
+                document.body,
+            )}
 
         </div >
     );

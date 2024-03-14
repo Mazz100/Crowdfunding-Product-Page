@@ -1,7 +1,7 @@
 //Variables
 $body-bg-color: hsl(0, 0%, 98%);
-$primary-cyan-color-default: hsl(176, 50%, 47%);
-$primary-dark-cyan-color-activeStates: hsl(176, 72%, 28%);
+$primary-cyan-color-default: rgb(60, 180, 172);
+$primary-dark-cyan-color-activeStates: rgb(20, 123, 116);
 
 
 @use 'reset';
@@ -66,7 +66,7 @@ nav {
     width: 100%;
     grid-area: 1/1/2/2;
     padding: 1em;
-    background: border-box linear-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 20%, 0.1));
+    background: linear-gradient(hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 20%, 0.1));
 
     .navbar-button {
         border: none;
@@ -201,7 +201,7 @@ nav {
 /* ============== Product Section Finish =================*/
 
 //FundTracker Styling Section
-.fund-container {
+.backed-container {
     @include backgroundStyle();
     padding: 1.5em;
     margin-bottom: 1.5em;
@@ -213,12 +213,16 @@ nav {
         text-align: center;
     }
 
-    .fund-remain {
+    .backed,
+    .backers,
+    .backed-days {
         font-size: 2rem;
         font-weight: 800;
     }
 
-    .fund-total {
+    .backed-total,
+    .backers-total,
+    .backed-days-total {
         font-size: 0.875rem;
         opacity: 0.7;
     }
@@ -358,7 +362,7 @@ nav {
 }
 
 .pledge-form {
-    max-width: 20rem;
+    max-width: 21rem;
     @include backgroundStyle();
     padding: 2em;
     overflow-y: auto;
@@ -366,14 +370,24 @@ nav {
     animation-name: popupModal;
     animation-duration: 0.2s;
 
-    .description-text{
-        margin-bottom: 1em;
+    .description-text {
+        font-size: 0.875rem;
+        margin-bottom: 1.25em;
+        opacity: 0.7;
     }
+
     .pledge-text {
         color: $primary-cyan-color-default;
         font-weight: 600;
     }
 
+}
+
+.title-flex {
+    @include Flex(row-reverse);
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 1.5em;
 }
 
 .modal-input {
@@ -419,7 +433,7 @@ input[type="radio"] {
     height: 1.15em;
     font-size: inherit;
     color: lightgray;
-    border: 0.15em solid lightgray;
+    border: 0.1em solid hsl(0, 0%, 86%);
     border-radius: 50%;
 }
 
@@ -438,13 +452,19 @@ input[type="radio"]:checked::before {
     transform: scale(1);
 }
 
-/*=============================*/
-
-.title-flex {
-    @include Flex(row-reverse);
-    justify-content: space-around;
-    width: 100%;
+//pledge label Styling
+.pledge-label {
+    cursor: pointer;
+    font-weight: 700;
+    transition: color 100ms linear;
+    will-change: color;
 }
+
+.pledge-label:hover {
+    color: $primary-cyan-color-default;
+}
+
+/*=============================*/
 
 .closeModal-button {
     border: none;
@@ -487,6 +507,54 @@ input[type="radio"]:checked::before {
     color: white;
 }
 
+/* ================= Pledge Modal Section Finish ================ */
+
+//Success Modal Styling Section
+.complete-modal-container {
+    display: grid;
+    place-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.modal-complete {
+    @include Flex(column);
+    gap: 1em;
+    @include backgroundStyle();
+    max-width: 20rem;
+    padding: 1em;
+    width: 100%;
+
+    .check-icon {
+        margin-top: 1em;
+    }
+
+    .description-text {
+        font-size: 0.875rem;
+        opacity: 0.7;
+        text-align: center;
+
+    }
+
+}
+
+.got-it-button {
+    display: block;
+    font-size: 0.875rem;
+    padding: 1em 2em 1em 2em;
+    border-radius: 24px;
+    margin-bottom: 1em;
+    border: none;
+    background-color: $primary-cyan-color-default;
+    color: white;
+}
+
+//============= Success Modal Styling Finish ===============*/
+
 //Hover states for buttons
 button {
     cursor: pointer;
@@ -501,8 +569,6 @@ button {
     background-color: lightgrey;
 
     .bookmark-image {
-        // filter: invert(63%) sepia(86%) saturate(321%) hue-rotate(127deg) brightness(83%) contrast(83%);
-
         opacity: 0.7;
     }
 }
@@ -513,6 +579,11 @@ button {
 
 .continue-button:hover {
     background-color: $primary-dark-cyan-color-activeStates;
+}
+
+.got-it-button:hover {
+    background-color: $primary-dark-cyan-color-activeStates;
+
 }
 
 //Footer
@@ -566,6 +637,11 @@ button {
 
     /*==================*/
 
+    nav {
+        justify-content: space-around;
+
+    }
+
     .back-project {
         .backproject-button {
             width: 30%;
@@ -581,7 +657,7 @@ button {
         }
     }
 
-    .fund-container {
+    .backed-container {
         ul {
             @include Flex(row);
             justify-content: space-around;
@@ -608,11 +684,20 @@ button {
 
     .pledge-form {
         max-width: 44rem;
+
+        .description-text{
+            font-size: 1rem;
+        }
     }
 
     .title-pledge-group {
         @include Flex(row);
         gap: 0.6em;
+    }
+
+    .modal-complete {
+        max-width: 28rem;
+        padding: 1.5em;
     }
 
 }

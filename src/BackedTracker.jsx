@@ -1,49 +1,52 @@
 import React, { useState, useEffect, useContext } from "react";
 import { backedContext } from "./CrowdfundMain";
+import { totalBackersContext } from "./CrowdfundMain";
 
 function BackedTracker() {
     const [targetBacked, setTargetBacked] = useState(100000);
     const [backed, setBacked] = useContext(backedContext);
-   
+    const [totalBacker, setTotalBackers] = useContext(totalBackersContext);
+
     const progressbarWidth = { width: (`${(backed / targetBacked) * 100}%`) };
+
 
     return (
         <>
-            <div className="fund-container">
+            <div className="backed-container">
                 <ul>
                     <div>
                         <li>
-                            <span className="fund-remain">${backed.toLocaleString()}</span>
+                            <span className="backed">${backed.toLocaleString()}</span>
                         </li>
                         <li>
-                            <span className="fund-total">of ${targetBacked.toLocaleString()} backed</span>
+                            <span className="backed-total">of ${targetBacked.toLocaleString()} backed</span>
                         </li>
                     </div>
 
                     <div className="line"></div>
                     <div>
                         <li>
-                            <span className="fund-remain">5,007</span>
+                            <span className="backers">{totalBacker.toLocaleString()}</span>
                         </li>
                         <li>
-                            <span className="fund-total">total backers</span>
+                            <span className="backers-total">total backers</span>
                         </li>
                     </div>
                     <div className="line"></div>
 
                     <div>
                         <li>
-                            <span className="fund-remain">56</span>
+                            <span className="backed-days">56</span>
                         </li>
                         <li>
-                            <span className="fund-total">days left</span>
+                            <span className="backed-days-total">days left</span>
                         </li>
                     </div>
                 </ul>
 
                 <div className="progressbar-container">
                     <div className="progressbar-BG">
-                        <div style={progressbarWidth}
+                        <div style={backed >= targetBacked ? { width: (`100%`) } : progressbarWidth}
                             className="progressbar-filling"
                             aria-label="backed progressbar">
                         </div>
