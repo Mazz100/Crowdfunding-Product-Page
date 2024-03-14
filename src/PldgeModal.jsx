@@ -3,10 +3,10 @@ import closeIcon from './assets/images/icon-close-modal.svg'
 import { backedContext } from "./CrowdfundMain";
 import { totalBackersContext } from "./CrowdfundMain";
 
-function PledgeModal({ cards, title, closeModal, completeState }) {
+function PledgeModal({ cards, title, defaultTitle, closeModal, completeState }) {
     const [selectedPledge, setSelectedPledge] = useState(title);
     const [pledge, setPledge] = useState('');
-    console.log(selectedPledge);
+
 
     //backed and totalBacker state reference by context
     const [totalBacker, setTotalBackers] = useContext(totalBackersContext);
@@ -14,6 +14,7 @@ function PledgeModal({ cards, title, closeModal, completeState }) {
 
     //Prevent symbols on number input
     const exceptThisSymbols = ['e', 'E', '+', '-'];
+
 
     function handleSelectedPledge(event) {
         setSelectedPledge(event.target.value);
@@ -68,7 +69,7 @@ function PledgeModal({ cards, title, closeModal, completeState }) {
                     Mastercraft Bamboo Monitor Riser out in the world?
                 </p>
 
-                <form action="">
+                <form action="" name="">
                     <div className="modal-input"
                         style=
                         {{
@@ -80,7 +81,7 @@ function PledgeModal({ cards, title, closeModal, completeState }) {
                                 id="Pledge with no reward"
                                 value="Pledge with no reward"
                                 onChange={handleSelectedPledge}
-                         
+                                defaultChecked={selectedPledge === defaultTitle}
                             />
                             <div>
                                 <label className="pledge-label" htmlFor="Pledge with no reward">Pledge with no reward</label>
@@ -91,7 +92,8 @@ function PledgeModal({ cards, title, closeModal, completeState }) {
                             As a backer, you will be signed up to recieve product updates via email
                         </p>
                         {/*No pledge confirm*/}
-                        {selectedPledge == "Pledge with no reward" ?
+                        {selectedPledge === "Pledge with no reward" ||
+                            selectedPledge === defaultTitle ?
                             <div className="pledgeform-container" style={{ marginTop: '1em' }}>
                                 <button
                                     onClick={() => {
@@ -116,14 +118,15 @@ function PledgeModal({ cards, title, closeModal, completeState }) {
                             opacity: card.stock === 0 ? 0.4 : null
                         }}>
                         <div className="pledgeRadio-flex-row">
-                            {card.stock > 0 && <input type="radio"
+                            <input type="radio"
                                 onChange={handleSelectedPledge}
                                 name="pledges"
                                 id={card.title}
                                 value={card.title}
-                                checked={title == selectedPledge}
+                                disabled={card.stock == 0}
+                                checked={card.title === selectedPledge}
 
-                            />}
+                            />
                             <div className="title-pledge-group">
                                 <label className="pledge-label" htmlFor={card.title}>{card.title}</label>
                                 <p className="pledge-text">{card.pledge}</p>

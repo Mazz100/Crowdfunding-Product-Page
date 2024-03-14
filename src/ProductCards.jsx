@@ -1,23 +1,11 @@
 import React, { useState, useContext } from "react";
 import RewardButton from "./RewardButton";
-import SuccessModal from "./SuccessModal";
-
 import { cardsMapContext } from "./CrowdfundMain";
-import { createPortal } from "react-dom";
 
-function ProductCards() {
+
+function ProductCards({ completeState, completeCondition }) {
     const cards = useContext(cardsMapContext);
-    //Complete modal state used for pledge confirmation
-    const [modalComplete, setModalIsComplete] = useState(false);
 
-    function handleCompleteState() {
-        if (!modalComplete) {
-            setModalIsComplete(true);
-        }
-        else {
-            setModalIsComplete(false);
-        }
-    }
 
     return (
         <div className="cards-container">
@@ -50,19 +38,10 @@ function ProductCards() {
                         </span>
                     </div>
                     {/*Passing a stock prop for button conditional rendering*/}
-                    <RewardButton cards={cards} stock={card.stock} title={card.title} completeState={handleCompleteState} />
+                    <RewardButton cards={cards} stock={card.stock} title={card.title} completeState={completeState} />
 
                 </div>
             </div>)}
-
-            {/*Modal Complete UI*/}
-            {modalComplete && createPortal(
-                <div className="complete-modal-container">
-                    <SuccessModal completeState={handleCompleteState}/>,
-                </div>,
-
-                document.body,
-            )}
 
         </div >
     );

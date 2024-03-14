@@ -4,7 +4,9 @@ import BackedTracker from "./BackedTracker";
 import ProductCards from "./ProductCards";
 import desktopBG from './assets/images/image-hero-desktop.jpg'
 import mobileBG from './assets/images/image-hero-mobile.jpg'
+import SuccessModal from "./SuccessModal";
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 
 //Contexts management
 export const backedContext = React.createContext();
@@ -14,6 +16,18 @@ export const cardsMapContext = React.createContext();
 function CrowdfundMain() {
     const [backed, setBacked] = useState(89914);
     const [totalBacker, setTotalBackers] = useState(5007);
+
+    //Complete modal state
+    const [modalComplete, setModalIsComplete] = useState(false);
+
+    function handleCompleteState() {
+        if (!modalComplete) {
+            setModalIsComplete(true);
+        }
+        else {
+            setModalIsComplete(false);
+        }
+    }
 
     const cards = [
         {
@@ -52,9 +66,9 @@ function CrowdfundMain() {
                 <backedContext.Provider value={[backed, setBacked]}>
                     <cardsMapContext.Provider value={cards}>
                         <totalBackersContext.Provider value={[totalBacker, setTotalBackers]}>
-                            <Product />
+                            <Product completeState={handleCompleteState} completeCondition={modalComplete} />
                             <BackedTracker />
-                            <ProductCards />
+                            <ProductCards completeState={handleCompleteState} completeCondition={modalComplete} />
                         </totalBackersContext.Provider>
                     </cardsMapContext.Provider>
                 </backedContext.Provider>
@@ -64,7 +78,17 @@ function CrowdfundMain() {
                 Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
                 Coded by <a href="https://github.com/Mazz100">Mazen Hassan</a>.
             </footer>
+
+            {/*Modal Complete UI*/}
+            {modalComplete && createPortal(
+                <div className="complete-modal-container">
+                    <SuccessModal completeState={handleCompleteState} />,
+                </div>,
+
+                document.body,
+            )}
         </div>
+
     );
 }
 

@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import { cardsMapContext } from './CrowdfundMain';
 import { createPortal } from 'react-dom';
 
-function Product() {
+function Product({ completeState, completeCondition }) {
     const [bookmark, setBookmark] = useState(false);
     const [isPledgeModalOpen, setIsPledgeModalOpen] = useState(false);
     const cards = useContext(cardsMapContext);
@@ -55,7 +55,8 @@ function Product() {
 
             {isPledgeModalOpen && createPortal(
                 <div className="modal-container">
-                    <PledgeModal cards={cards} closeModal={closeModal} />
+                    <PledgeModal cards={cards} defaultTitle={cards.title}
+                        closeModal={closeModal} completeState={completeState} />
                 </div>,
 
                 document.body,
