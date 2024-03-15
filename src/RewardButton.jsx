@@ -16,6 +16,7 @@ function RewardButton({ cards, stock, title, completeState }) {
         setIsPledgeModalOpen(false);
     }
 
+    
     return (
         <>
             <button className={stock > 0 ? 'reward-button' : 'out-of-stock-button'}
@@ -27,7 +28,7 @@ function RewardButton({ cards, stock, title, completeState }) {
 
             {isPledgeModalOpen && createPortal(
                 <div className="modal-container">
-                    <PledgeModal cards={cards} title={title}
+                    <PledgeModal cards={cards} title={title} stock={stock}
                         closeModal={closeModal}
                         completeState={completeState} />
                 </div>,

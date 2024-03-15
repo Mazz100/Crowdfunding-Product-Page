@@ -15,35 +15,22 @@ function BackedTracker() {
         <div className="backed-container">
             <ul>
                 <li>
-                    <li>
-                        <span className="backed">${backed.toLocaleString()}</span>
-                    </li>
-                    <li>
-                        <span className="backed-total">of ${targetBacked.toLocaleString()} backed</span>
-                    </li>
+                    <p className="backed">${backed.toLocaleString()}</p>
+                    <p className="backed-total">of ${targetBacked.toLocaleString()} backed</p>
                 </li>
 
                 <div className="line"></div>
 
                 <li>
-                    <li>
-                        <span className="backers">{totalBacker.toLocaleString()}</span>
-                    </li>
-                    <li>
-                        <span className="backers-total">total backers</span>
-                    </li>
+                    <p className="backers">{totalBacker.toLocaleString()}</p>
+                    <p className="backers-total">total backers</p>
                 </li>
-
 
                 <div className="line"></div>
 
                 <li>
-                    <li>
-                        <span className="backed-days">56</span>
-                    </li>
-                    <li>
-                        <span className="backed-days-total">days left</span>
-                    </li>
+                    <p className="backed-days">56</p>
+                    <p className="backed-days-total">days left</p>
                 </li>
             </ul>
 

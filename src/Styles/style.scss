@@ -185,7 +185,7 @@ nav {
     }
 }
 
-.bookmare-button {
+.bookmark-button {
     @include Flex(row);
     background-color: hsl(0, 0%, 97%);
     gap: 0.5em;
@@ -563,12 +563,8 @@ button {
     background-color: $primary-dark-cyan-color-activeStates;
 }
 
-.bookmare-button:hover {
-    background-color: lightgrey;
-
-    .bookmark-image {
-        opacity: 0.7;
-    }
+.bookmark-button:hover {
+    opacity: 0.7;
 }
 
 .reward-button:hover {
@@ -634,7 +630,7 @@ button {
     }
 
     /*==================*/
-    
+
     //Desktop nav style
     nav {
         justify-content: space-around;
@@ -646,12 +642,13 @@ button {
             width: 30%;
         }
 
-        .bookmare-button {
+        .bookmark-button {
             span {
                 display: block;
                 font-weight: 700;
                 text-align: center;
                 padding-inline: 1em;
+                opacity: 0.6;
             }
         }
     }
@@ -661,7 +658,7 @@ button {
             @include Flex(row);
             justify-content: space-evenly;
         }
-
+        
         .line {
             width: 1px;
             height: 50px;

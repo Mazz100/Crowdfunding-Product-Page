@@ -38,9 +38,8 @@ function Product({ completeState, completeCondition }) {
                     </button>
 
                     <button onClick={() => !bookmark ? setBookmark(true) : setBookmark(false)}
-                        className='bookmare-button'
-                        aria-label='bookmark button'
-                    >
+                        className='bookmark-button'
+                        aria-label='bookmark button'>
 
                         <svg className='bookmark-image' width="56" height="56" xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" fillRule="evenodd"><circle fill={bookmark ? '#147b74' : "#2F2F2F"} cx="28" cy="28" r="28" />

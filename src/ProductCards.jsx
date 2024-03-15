@@ -23,7 +23,7 @@ function ProductCards({ completeState, completeCondition }) {
 
             {cards.map(card => <div key={card.title} className="cards" style={card.stock == 0 ? { opacity: 0.6 } : null} >
                 <div className="desktop-flex-row">
-                    <h4 className="reward-title">{card.title}</h4>
+                    <h3 className="reward-title">{card.title}</h3>
 
                     <p className="pledge-text">{card.pledge}</p>
                 </div>

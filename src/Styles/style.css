@@ -251,7 +251,7 @@ nav .navbar-button {
   font-weight: 700;
 }
 
-.bookmare-button {
+.bookmark-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -262,7 +262,7 @@ nav .navbar-button {
   border-radius: 24px;
   padding: 0;
 }
-.bookmare-button span {
+.bookmark-button span {
   display: none;
 }
 
@@ -619,10 +619,7 @@ button {
   background-color: rgb(20, 123, 116);
 }
 
-.bookmare-button:hover {
-  background-color: lightgrey;
-}
-.bookmare-button:hover .bookmark-image {
+.bookmark-button:hover {
   opacity: 0.7;
 }
 
@@ -687,11 +684,12 @@ button {
   .back-project .backproject-button {
     width: 30%;
   }
-  .back-project .bookmare-button span {
+  .back-project .bookmark-button span {
     display: block;
     font-weight: 700;
     text-align: center;
     padding-inline: 1em;
+    opacity: 0.6;
   }
   .backed-container ul {
     display: flex;
